@@ -3,7 +3,7 @@
 A full-stack MERN project that allows **Organizers** to manage medical camps and **Participants** to register, pay, and give feedback efficiently. Developed as part of **Assignment 12 - Category 013**.
 
 ## 🔗 Live Site
-👉 [Visit the Live Website](https://your-live-site-link.com)
+👉 [Visit the Live Website](https://medical-camp-ee67c.web.app/)
 
 ---
 
