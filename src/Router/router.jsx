@@ -28,6 +28,7 @@ import PaymentHistory from "../Pages/Dashboard/ParticipantDashboard/PaymentHisto
 import MedicalTips from "../Components/MedicalTips/MedicalTips";
 import TeamSlider from "../Pages/Team/TeamSlider";
 import FaqSection from "../Pages/FaqSection/FaqSection";
+import ContactSection from "../Pages/ContactSection";
 
 // Stripe publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         path: "/camps",
         loader: () => fetch("https://medical-camp-server-liart.vercel.app/camps"),
         element: <AvailableCamps />
+      },
+      {
+        path: "/contactSection",
+        element:<ContactSection></ContactSection>
       },
       {
         path: "/camps/:id",

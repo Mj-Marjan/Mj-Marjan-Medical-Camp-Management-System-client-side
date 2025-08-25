@@ -35,6 +35,13 @@ const Navbar = () => {
             : "hover:bg-purple-50 dark:hover:bg-gray-700 px-3 py-1 rounded-lg transition-all"
         } to="/camps">Available Camps</NavLink>
       </li>
+      <li>
+        <NavLink className={({ isActive }) =>
+          isActive
+            ? "bg-purple-100 text-purple-700 px-3 py-1 rounded-lg font-semibold shadow-sm"
+            : "hover:bg-purple-50 dark:hover:bg-gray-700 px-3 py-1 rounded-lg transition-all"
+        } to="/contactSection">ContactSection</NavLink>
+      </li>
     </>
   );
 
