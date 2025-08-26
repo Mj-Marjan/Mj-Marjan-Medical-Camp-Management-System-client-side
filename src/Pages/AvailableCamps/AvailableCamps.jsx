@@ -5,36 +5,25 @@ import ShowAvailableCamps from './ShowAvailableCamps';
 const AvailableCamps = () => {
   const originalCamps = useLoaderData();
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortOption, setSortOption] = useState('');
-  const [columns, setColumns] = useState(3);
+  const [columns, setColumns] = useState(4);
 
-  // Pagination state
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 10;
+  const rowsPerPage = 12;
 
   if (!Array.isArray(originalCamps)) {
-    return <p className="text-center text-red-600">No camps available or data is invalid.</p>;
+    return <p className="text-center text-red-600">No camps available.</p>;
   }
 
   let camps = [...originalCamps];
 
-  // Search filtering
+  // Search filter
   if (searchTerm) {
     const lower = searchTerm.toLowerCase();
     camps = camps.filter(camp =>
       camp.campName?.toLowerCase().includes(lower) ||
-      camp.location?.toLowerCase().includes(lower) ||
-      camp.healthcareProfessional?.toLowerCase().includes(lower)
+      camp.location?.toLowerCase().includes(lower)
     );
-  }
-
-  // Sorting
-  if (sortOption === 'fees') {
-    camps.sort((a, b) => a.fees - b.fees);
-  } else if (sortOption === 'participants') {
-    camps.sort((a, b) => b.participantCount - a.participantCount);
-  } else if (sortOption === 'name') {
-    camps.sort((a, b) => a.campName.localeCompare(b.campName));
   }
 
   // Pagination logic
@@ -43,62 +32,40 @@ const AvailableCamps = () => {
   const currentCamps = camps.slice(indexOfFirstCamp, indexOfLastCamp);
 
   const totalPages = Math.ceil(camps.length / rowsPerPage);
-
-  // Page number buttons generate
-  const pageNumbers = [];
-  for(let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-indigo-100 to-purple-100">
-      <h2 className="text-4xl font-bold mb-8 text-center text-indigo-700">Available Medical Camps</h2>
+    <div className="min-h-screen px-6 py-10 bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white">
+      <h2 className="text-4xl font-bold mb-8 text-center text-white drop-shadow-lg">Available Medical Camps</h2>
 
-      {/* Search & Filter Panel */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+      {/* Search Panel */}
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
         <input
           type="text"
           placeholder="Search camps..."
-          className="input input-bordered w-full md:w-1/3"
+          className="input input-bordered w-full md:w-1/3 bg-white/10 text-white placeholder-white border-white/30 focus:ring-2 focus:ring-indigo-400"
           value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setCurrentPage(1); // reset page on search
-          }}
+          onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
         />
 
-        <select
-          className="select select-bordered"
-          value={sortOption}
-          onChange={(e) => {
-            setSortOption(e.target.value);
-            setCurrentPage(1); // reset page on sort
-          }}
-        >
-          <option value="">Sort by</option>
-          <option value="participants">Most Registered</option>
-          <option value="fees">Camp Fees</option>
-          <option value="name">Alphabetical (Camp Name)</option>
-        </select>
-
         <button
-          onClick={() => setColumns(columns === 3 ? 2 : 3)}
-          className="btn btn-outline btn-accent"
+          onClick={() => setColumns(columns === 4 ? 3 : 4)}
+          className="btn btn-outline border-white text-white hover:bg-white/20"
         >
-          {columns === 3 ? '2 Column Layout' : '3 Column Layout'}
+          {columns === 4 ? '3 Column Layout' : '4 Column Layout'}
         </button>
       </div>
 
-      {/* Grid Layout */}
+      {/* Grid */}
       <div className={`grid gap-6 ${
-        columns === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'
+        columns === 4 ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'
       }`}>
         {currentCamps.map(camp => (
           <ShowAvailableCamps key={camp._id} camp={camp} />
         ))}
       </div>
 
-      {/* Pagination Controls */}
+      {/* Pagination */}
       <div className="flex justify-center mt-8 space-x-2">
         {pageNumbers.map(number => (
           <button
@@ -106,8 +73,8 @@ const AvailableCamps = () => {
             onClick={() => setCurrentPage(number)}
             className={`px-4 py-2 rounded-md border ${
               number === currentPage
-                ? 'bg-indigo-600 text-white'
-                : 'bg-white text-indigo-600 hover:bg-indigo-200'
+                ? 'bg-indigo-600 text-white shadow-md'
+                : 'bg-white/10 text-white border-white/30 hover:bg-white/20'
             }`}
           >
             {number}

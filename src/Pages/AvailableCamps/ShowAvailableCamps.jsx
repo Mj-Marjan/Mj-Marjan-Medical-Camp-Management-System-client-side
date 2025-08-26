@@ -1,59 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
-import { CalendarIcon, MapPinIcon, UserIcon, DollarSignIcon, InfoIcon } from 'lucide-react';
+import { CalendarIcon, MapPinIcon } from 'lucide-react';
 
 const ShowAvailableCamps = ({ camp }) => {
   return (
     <motion.div
       key={camp._id}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.02 }}
-      className="bg-white shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-200"
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.4 }}
+      className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden cursor-pointer relative hover:shadow-2xl hover:scale-105 transition-all duration-300"
     >
-      <img
-        src={camp?.image}
-        alt={camp?.campName}
-        className="w-full h-52 object-cover rounded-t-2xl"
-      />
-      <div className="p-5 space-y-2">
-        <h3 className="text-2xl font-bold text-indigo-700 mb-2">
-          {camp.campName}
-        </h3>
+      <div className="relative group">
+        <img
+          src={camp?.image}
+          alt={camp?.campName}
+          className="w-full h-44 object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-3">
+          <h3 className="text-white font-bold text-lg truncate">{camp.campName}</h3>
+        </div>
+      </div>
 
-        <p className="flex items-center gap-2 text-gray-700">
-          <CalendarIcon className="w-4 h-4 text-purple-500" />
-          <span><strong>Date & Time:</strong> {camp.dateTime}</span>
+      <div className="p-4 space-y-2">
+        <p className="flex items-center gap-2 text-white/80">
+          <CalendarIcon className="w-4 h-4 text-purple-400" /> {camp.dateTime}
         </p>
-
-        <p className="flex items-center gap-2 text-gray-700">
-          <MapPinIcon className="w-4 h-4 text-red-500" />
-          <span><strong>Location:</strong> {camp.location}</span>
-        </p>
-
-        <p className="flex items-center gap-2 text-gray-700">
-          <UserIcon className="w-4 h-4 text-blue-500" />
-          <span><strong>Doctor:</strong> {camp.healthcareProfessional}</span>
-        </p>
-
-        <p className="flex items-center gap-2 text-gray-700">
-          <DollarSignIcon className="w-4 h-4 text-green-500" />
-          <span><strong>Fees:</strong> {camp.fees} BDT</span>
-        </p>
-
-        <p className="flex items-center gap-2 text-gray-700">
-          <UserIcon className="w-4 h-4 text-orange-500" />
-          <span><strong>Participants:</strong> {camp.participantCount}</span>
-        </p>
-
-        <p className="text-sm text-gray-600">
-          <InfoIcon className="inline w-4 h-4 mr-1 text-indigo-400" /> {camp.description}
+        <p className="flex items-center gap-2 text-white/80">
+          <MapPinIcon className="w-4 h-4 text-red-400" /> {camp.location}
         </p>
 
         <Link to={`/camps/${camp._id}`}>
-          <button className="mt-4 w-full btn btn-md bg-indigo-600 text-white hover:bg-indigo-700 rounded-lg">
+          <button className="mt-3 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition duration-300 font-medium">
             View Details
           </button>
         </Link>
