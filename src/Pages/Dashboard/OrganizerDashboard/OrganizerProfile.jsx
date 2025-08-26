@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-
 import { motion } from "framer-motion";
-import { use } from "react";
 import { AuthContext } from "../../../Contexts/AuthContext";
 import toast from "react-hot-toast";
 
 const OrganizerProfile = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
@@ -45,10 +42,13 @@ const OrganizerProfile = () => {
 
   const handleSave = async () => {
     try {
-      await axios.patch(`https://medical-camp-server-liart.vercel.app/users/${user.email}`, {
-        name: formData.name,
-        photo: formData.photo,
-      });
+      await axios.patch(
+        `https://medical-camp-server-liart.vercel.app/users/${user.email}`,
+        {
+          name: formData.name,
+          photo: formData.photo,
+        }
+      );
       toast.success("✅ Profile updated successfully!");
       setEditMode(false);
       setProfile({ ...profile, ...formData });
@@ -60,19 +60,22 @@ const OrganizerProfile = () => {
 
   return (
     <motion.div
-      className="max-w-xl mx-auto mt-12 p-8 rounded-2xl bg-white shadow-2xl dark:bg-slate-800"
+      className="max-w-xl mx-auto mt-12 p-8 rounded-2xl 
+      bg-gradient-to-r from-[#1a1a2e]/90 via-[#16213e]/80 to-[#0f3460]/90 
+      backdrop-blur-lg shadow-2xl border border-white/10 text-white"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <h2 className="text-3xl font-bold text-center mb-6 text-purple-700 dark:text-white">
+      <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent drop-shadow-md">
         Organizer Profile
       </h2>
 
+      {/* Avatar */}
       <div className="flex justify-center mb-6">
         <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="avatar w-32 h-32 rounded-full ring ring-purple-400 ring-offset-base-100 ring-offset-2 overflow-hidden"
+          whileHover={{ scale: 1.08, rotate: 2 }}
+          className="avatar w-32 h-32 rounded-full ring ring-purple-400 ring-offset-base-100 ring-offset-2 overflow-hidden shadow-xl"
         >
           <img
             src={
@@ -86,10 +89,11 @@ const OrganizerProfile = () => {
         </motion.div>
       </div>
 
-      <div className="space-y-4">
+      {/* Profile Fields */}
+      <div className="space-y-5">
         {/* Name */}
         <div>
-          <label className="label font-medium">Name</label>
+          <label className="label font-semibold">Name</label>
           {editMode ? (
             <motion.input
               whileFocus={{ scale: 1.02 }}
@@ -97,22 +101,22 @@ const OrganizerProfile = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full text-black"
             />
           ) : (
-            <p className="text-lg">{profile.name}</p>
+            <p className="text-lg font-medium">{profile.name}</p>
           )}
         </div>
 
         {/* Email */}
         <div>
-          <label className="label font-medium">Email</label>
-          <p className="text-gray-500 dark:text-gray-300">{profile.email}</p>
+          <label className="label font-semibold">Email</label>
+          <p className="text-gray-300">{profile.email}</p>
         </div>
 
         {/* Photo URL */}
         <div>
-          <label className="label font-medium">Photo URL</label>
+          <label className="label font-semibold">Photo URL</label>
           {editMode ? (
             <motion.input
               whileFocus={{ scale: 1.02 }}
@@ -120,27 +124,27 @@ const OrganizerProfile = () => {
               name="photo"
               value={formData.photo}
               onChange={handleChange}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full text-black"
             />
           ) : (
-            <p className="text-blue-500 break-all">{profile.photo}</p>
+            <p className="text-blue-400 break-all">{profile.photo}</p>
           )}
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-6 flex justify-between">
+        <div className="mt-6 flex gap-4">
           {editMode ? (
             <>
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-success"
+                className="flex-1 px-4 py-2 rounded-lg bg-gradient-to-r from-green-400 to-emerald-500 hover:opacity-90 transition"
                 onClick={handleSave}
               >
                 Save
               </motion.button>
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-outline"
+                className="flex-1 px-4 py-2 rounded-lg bg-gradient-to-r from-gray-500 to-gray-600 hover:opacity-90 transition"
                 onClick={handleEditToggle}
               >
                 Cancel
@@ -150,7 +154,7 @@ const OrganizerProfile = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={handleEditToggle}
-              className="btn btn-primary w-full"
+              className="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:opacity-90 transition shadow-lg"
             >
               Edit Profile
             </motion.button>
