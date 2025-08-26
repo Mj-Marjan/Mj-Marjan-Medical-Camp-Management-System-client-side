@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ShowLatestCamp from "./ShowLatestCamp";
-import { Link } from "react-router"; // 🔄 use 'react-router-dom' not 'react-router'
+import { Link } from "react-router";
 
 const LatestCamp = () => {
   const [camps, setCamps] = useState([]);
@@ -10,26 +10,30 @@ const LatestCamp = () => {
       .then((res) => res.json())
       .then((data) => {
         const sortedCamps = data.sort((a, b) => b.participantCount - a.participantCount);
-        setCamps(sortedCamps.slice(0, 6));
+        setCamps(sortedCamps.slice(0, 8)); // show top 8
       })
       .catch((err) => console.error("Error fetching popular camps:", err));
   }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <h2 className="text-4xl font-bold mb-10 text-center text-indigo-700">
-        🌟 Popular Medical Camps
+      <h2 className="text-4xl font-extrabold mb-12 text-center text-indigo-400 drop-shadow-lg">
+        🌊 Popular Medical Camps
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
         {camps.map((camp) => (
           <ShowLatestCamp key={camp._id} camp={camp} />
         ))}
       </div>
 
-      <div className="text-center mt-10">
+      {/* Button */}
+      <div className="text-center mt-12">
         <Link to="/camps">
-          <button className="btn bg-indigo-600 text-white px-6 py-2 text-lg hover:bg-indigo-700 transition-all duration-300 rounded-lg shadow-md">
+          <button className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-700 
+                             text-white text-lg font-bold rounded-xl shadow-md 
+                             hover:shadow-2xl transition-all duration-300">
             See All Camps
           </button>
         </Link>

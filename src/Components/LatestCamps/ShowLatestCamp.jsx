@@ -1,50 +1,56 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 
+const floatAnimation = {
+  y: [0, -8, 0, 8, 0], // উপরে-নিচে যাবে
+  transition: {
+    duration: 6, // কত সময় নেবে একবার
+    repeat: Infinity, // অনন্ত লুপ
+    ease: "easeInOut",
+  },
+};
+
 const ShowLatestCamp = ({ camp }) => {
-  const {
-    _id,
-    campName,
-    image,
-    campFees,
-    dateTime,
-    location,
-    healthcareProfessional,
-    participantCount,
-  } = camp || {};
+  const { _id, campName, image, campFees, dateTime, location } = camp || {};
 
   return (
     <motion.div
-      className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all"
-      whileHover={{ scale: 1.03 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      className="relative bg-gradient-to-br from-[#1a1a2e]/90 via-[#16213e]/90 to-[#0f3460]/90 
+                 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl 
+                 overflow-hidden text-white p-5 flex flex-col justify-between"
+      animate={floatAnimation}
+      whileHover={{ scale: 1.05, rotate: 0.5 }}
     >
-      <div className="overflow-hidden">
+      {/* Image */}
+      <div className="overflow-hidden rounded-2xl">
         <motion.img
           src={image}
           alt={campName}
-          className="w-full h-48 object-cover transform transition-transform duration-500 hover:scale-105"
+          className="w-full h-40 object-cover rounded-2xl shadow-md"
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.5 }}
         />
       </div>
-      <div className="p-5 space-y-2">
-        <h3 className="text-xl font-semibold text-indigo-700">{campName}</h3>
-        <p><strong>📅 Date:</strong> {dateTime}</p>
-        <p><strong>📍 Location:</strong> {location}</p>
-        <p><strong>👨‍⚕️ Doctor:</strong> {healthcareProfessional}</p>
-        <p><strong>👥 Participants:</strong> {participantCount}</p>
-        <p><strong>💰 Fees:</strong> {campFees} BDT</p>
 
-        <Link to={`/camps/${_id}`}>
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className="mt-3 btn btn-sm bg-indigo-600 text-white hover:bg-indigo-700 transition-all"
-          >
-            View Details
-          </motion.button>
-        </Link>
+      {/* Content */}
+      <div className="mt-4 space-y-2 flex-1">
+        <h3 className="text-xl font-bold text-indigo-300">{campName}</h3>
+        <p className="text-sm text-gray-300">📅 {dateTime}</p>
+        <p className="text-sm text-gray-300">📍 {location}</p>
+        <p className="text-sm font-semibold text-green-300">💰 {campFees} BDT</p>
       </div>
+
+      {/* Button */}
+      <Link to={`/camps/${_id}`} className="mt-4">
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          className="w-full py-2 bg-gradient-to-r from-indigo-500 to-purple-600 
+                     text-white rounded-lg font-semibold text-sm shadow-md 
+                     hover:shadow-xl transition-all duration-300"
+        >
+          View Details
+        </motion.button>
+      </Link>
     </motion.div>
   );
 };
