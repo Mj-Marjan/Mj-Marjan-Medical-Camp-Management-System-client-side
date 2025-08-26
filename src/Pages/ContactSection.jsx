@@ -9,7 +9,6 @@ const ContactSection = () => {
     email: "",
     message: "",
   });
-
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -22,10 +21,10 @@ const ContactSection = () => {
 
     emailjs
       .send(
-        "service_3fzimcb", // Replace with your EmailJS Service ID
-        "template_yoxjlhm", // Replace with your EmailJS Template ID
+        "service_3fzimcb",
+        "template_yoxjlhm",
         formData,
-        "GtrmG4jm7Xb-B3RMp" // Replace with your EmailJS Public Key
+        "GtrmG4jm7Xb-B3RMp"
       )
       .then(
         () => {
@@ -42,14 +41,18 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 py-20 px-4">
+    <section className="relative py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-white/5 via-purple-800/20 to-indigo-900/20 backdrop-blur-xl rounded-3xl overflow-hidden">
       <Toaster position="top-right" />
-      <div className="max-w-5xl mx-auto text-center mb-12">
+      {/* Glowy background shapes */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow pointer-events-none"></div>
+      <div className="absolute -bottom-20 -right-10 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl animate-pulse-slow pointer-events-none"></div>
+
+      <div className="max-w-5xl mx-auto text-center mb-12 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-purple-600 dark:text-indigo-400 mb-4"
+          className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text text-white mb-4 drop-shadow-lg"
         >
           Get in Touch
         </motion.h2>
@@ -57,7 +60,7 @@ const ContactSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-gray-700 dark:text-gray-300"
+          className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto"
         >
           Have a question or suggestion? Fill out the form below and we will
           respond as soon as possible!
@@ -66,11 +69,11 @@ const ContactSection = () => {
 
       <motion.form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-gray-800 shadow-xl rounded-xl p-8 max-w-3xl mx-auto grid gap-6"
+        className="relative z-10 bg-white/10 dark:bg-gray-900/30 backdrop-blur-lg shadow-xl rounded-3xl p-8 md:p-12 max-w-3xl mx-auto grid gap-6"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6 }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <motion.input
@@ -80,8 +83,8 @@ const ContactSection = () => {
             onChange={handleChange}
             placeholder="Your Name"
             required
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-300"
-            whileFocus={{ scale: 1.02 }}
+            whileFocus={{ scale: 1.02, borderColor: "#a78bfa" }}
+            className="w-full px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400/60 dark:bg-gray-800 dark:text-white transition-all duration-300 shadow-sm hover:shadow-md"
           />
           <motion.input
             type="email"
@@ -90,8 +93,8 @@ const ContactSection = () => {
             onChange={handleChange}
             placeholder="Your Email"
             required
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-300"
-            whileFocus={{ scale: 1.02 }}
+            whileFocus={{ scale: 1.02, borderColor: "#a78bfa" }}
+            className="w-full px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400/60 dark:bg-gray-800 dark:text-white transition-all duration-300 shadow-sm hover:shadow-md"
           />
         </div>
 
@@ -102,16 +105,16 @@ const ContactSection = () => {
           placeholder="Your Message"
           required
           rows="5"
-          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white resize-none transition-all duration-300"
-          whileFocus={{ scale: 1.02 }}
-        ></motion.textarea>
+          whileFocus={{ scale: 1.02, borderColor: "#a78bfa" }}
+          className="w-full px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400/60 dark:bg-gray-800 dark:text-white resize-none transition-all duration-300 shadow-sm hover:shadow-md"
+        />
 
         <motion.button
           type="submit"
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(168,85,247,0.6)" }}
           whileTap={{ scale: 0.95 }}
           disabled={loading}
-          className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold rounded-lg py-3 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-indigo-600 shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Sending..." : "Send Message"}
         </motion.button>

@@ -8,6 +8,8 @@ import FeedbackAndRatings from '../Components/FeedbackAndRatings/FeedbackAndRati
 import MedicalTips from '../Components/MedicalTips/MedicalTips';
 import TeamSlider from '../Pages/Team/TeamSlider';
 import FaqSection from '../Pages/FaqSection/FaqSection';
+import UpcomingCamps from '../Pages/UpcomingCamps';
+import ContactSection from '../Pages/ContactSection';
 
 const Home = () => {
     useEffect(() => {
@@ -41,6 +43,14 @@ const Home = () => {
 
             <div data-aos="fade-up">
                 <TeamSlider />
+            </div>
+
+            {/* Add more sections as needed */}
+            <div data-aos="fade-up">
+                <UpcomingCamps />
+            </div>
+            <div data-aos="zoom-in">
+                <ContactSection />
             </div>
         </div>
     );

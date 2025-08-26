@@ -29,6 +29,7 @@ import MedicalTips from "../Components/MedicalTips/MedicalTips";
 import TeamSlider from "../Pages/Team/TeamSlider";
 import FaqSection from "../Pages/FaqSection/FaqSection";
 import ContactSection from "../Pages/ContactSection";
+import UpcomingCamps from "../Pages/UpcomingCamps";
 
 // Stripe publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "/contactSection",
         element:<ContactSection></ContactSection>
+      },
+      {
+        path: "/upcomingCamps",
+        element:<UpcomingCamps></UpcomingCamps>
       },
       {
         path: "/camps/:id",

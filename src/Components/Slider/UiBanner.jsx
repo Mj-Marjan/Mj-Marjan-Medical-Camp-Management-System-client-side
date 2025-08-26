@@ -6,9 +6,10 @@ const UiBanner = ({ item }) => {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
-      <div className="grid md:grid-cols-2 items-center gap-6 md:gap-10 px-4 py-12 md:py-16 rounded-3xl 
-      bg-white/10 backdrop-blur-lg shadow-2xl">
-
+      <div
+        className="grid md:grid-cols-2 items-center gap-6 md:gap-10 px-4 py-12 md:py-16 rounded-3xl 
+      bg-white/10 backdrop-blur-lg shadow-2xl"
+      >
         {/* Text Side with animation */}
         <motion.div
           className="space-y-4 md:space-y-6 order-2 md:order-1"
@@ -22,7 +23,16 @@ const UiBanner = ({ item }) => {
           <p className="text-base sm:text-lg text-gray-200 max-w-lg md:max-w-xl leading-relaxed">
             {description}
           </p>
-          <button className="mt-3 md:mt-4 px-5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300 text-white">
+          <button
+            type="button"
+            onClick={() =>
+              window.open(
+                "https://www.dskbangladesh.org/free-medical-camp24/",
+                "_blank"
+              )
+            }
+            className="mt-3 md:mt-4 px-5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300 text-white"
+          >
             Learn More
           </button>
         </motion.div>
