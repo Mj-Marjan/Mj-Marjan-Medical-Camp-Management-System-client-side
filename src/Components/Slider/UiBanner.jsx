@@ -6,20 +6,25 @@ const UiBanner = ({ item }) => {
 
   return (
     <div className="container mx-auto px-4">
-      <div className="grid md:grid-cols-2 items-center gap-8 px-6 py-20 my-10 rounded-2xl bg-gradient-to-r from-[#f9fbe7] via-[#e0f7fa] to-[#fce4ec] shadow-2xl">
+      <div className="grid md:grid-cols-2 items-center gap-10 px-6 py-16 my-14 rounded-3xl 
+      bg-white/10 backdrop-blur-lg shadow-2xl">
+        
         {/* Text Side with animation */}
         <motion.div
-          className="space-y-6 md:pl-6"
+          className="space-y-6 md:pr-8 order-2 md:order-1"
           initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 drop-shadow-sm leading-snug">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md leading-snug">
             {title}
           </h2>
-          <p className="text-lg text-gray-700 max-w-xl leading-relaxed">
+          <p className="text-lg text-gray-200 max-w-xl leading-relaxed">
             {description}
           </p>
+          <button className="mt-4 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300">
+            Learn More
+          </button>
         </motion.div>
 
         {/* Image Side with animation */}
@@ -27,12 +32,18 @@ const UiBanner = ({ item }) => {
           initial={{ x: 80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1 }}
-          className="text-center"
+          className="flex justify-center order-1 md:order-2"
         >
-          <img
+          <motion.img
             src={image}
             alt={title}
-            className="w-full h-[300px] md:h-[350px] object-cover rounded-xl mx-auto shadow-xl"
+            className="w-full max-w-md h-[300px] md:h-[380px] object-cover rounded-2xl border border-white/30 shadow-2xl"
+            whileHover={{
+              scale: 1.05,
+              rotate: 1,
+              boxShadow: "0px 20px 40px rgba(0,0,0,0.5)",
+            }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
           />
         </motion.div>
       </div>
