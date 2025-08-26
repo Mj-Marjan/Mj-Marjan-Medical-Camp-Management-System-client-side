@@ -177,7 +177,7 @@ const MedicalTips = () => {
                 alt={selectedTip.title}
                 className="w-full h-56 object-cover rounded-md mb-5"
               />
-              <p className="text-gray-700 whitespace-pre-line leading-relaxed">
+              <p className="text-gray-600 whitespace-pre-line leading-relaxed">
                 {selectedTip.fullContent}
               </p>
             </motion.div>
