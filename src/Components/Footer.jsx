@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <div className="relative min-h-[50vh] bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 flex items-center justify-center p-6">
+    <div className="relative min-h-[50vh]  flex items-center justify-center p-6">
       {/* Glassmorphism Box */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}

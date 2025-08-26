@@ -4,7 +4,6 @@ import UiBanner from "./UiBanner";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 const Banner = () => {
   const [bannerData, setBannerData] = useState([]);
 
@@ -18,12 +17,13 @@ const Banner = () => {
     dots: true,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 3000, // 3 seconds
+    autoplaySpeed: 3000, 
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    pauseOnHover: false
+    pauseOnHover: false,
+    adaptiveHeight: true, // ✅ responsive vertically
   };
 
   return (

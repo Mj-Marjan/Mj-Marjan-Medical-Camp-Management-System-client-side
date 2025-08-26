@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 import { motion, AnimatePresence } from "framer-motion";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const tipsData = [
@@ -72,19 +72,31 @@ const MedicalTips = () => {
 
   const settings = {
     infinite: true,
-    speed: 2500,
+    speed: 800,
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
     dots: true,
     autoplay: true,
-    autoplaySpeed: 0,
-    cssEase: "linear",
-    centerMode: true,        // centered slides
-    centerPadding: "40px",   // gap between slides
+    autoplaySpeed: 3000, // autoplay every 3 sec
+    cssEase: "ease-in-out",
+    centerMode: true,
+    centerPadding: "40px",
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2, centerPadding: "30px" } },
-      { breakpoint: 640, settings: { slidesToShow: 1, centerPadding: "20px" } },
+      {
+        breakpoint: 1024, // tablet
+        settings: {
+          slidesToShow: 2,
+          centerPadding: "30px",
+        },
+      },
+      {
+        breakpoint: 640, // mobile
+        settings: {
+          slidesToShow: 1,
+          centerPadding: "20px",
+        },
+      },
     ],
   };
 
@@ -97,44 +109,41 @@ const MedicalTips = () => {
         Learn essential health tips to stay healthy. Click any card for details.
       </p>
 
-    <Slider {...settings}>
-  {tipsData.map((tip, i) => (
-    <motion.div
-      key={tip.id}
-      custom={i}
-      initial="hidden"
-      animate="visible"
-      variants={cardVariants}
-      className="rounded-2xl cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-transform backdrop-blur-md bg-white/10 border border-white/20 flex flex-col"
-      style={{
-        minWidth: "260px",
-        maxWidth: "280px",
-        height: "360px",
-        padding: "1.5rem",
-        margin: "0 12px",   // <-- এখানে card গুলোর মধ্যে proper gap
-        gap: "5rem",
-        boxSizing: "border-box", // padding + margin ঠিকভাবে কাজ করবে
-      }}
-      onClick={() => setSelectedTip(tip)}
-    >
-      <img
-        src={tip.imageURL}
-        alt={tip.title}
-        className="w-full h-40 object-cover rounded-t-xl flex-shrink-0"
-      />
-      <div className="flex flex-col flex-grow justify-between">
-        <h2 className="text-lg font-semibold text-center text-white mb-2">
-          {tip.title}
-        </h2>
-        <p className="text-gray-200 text-sm pb-4 text-center line-clamp-3 flex-grow">
-          {tip.shortDescription}
-        </p>
-      </div>
-    </motion.div>
-  ))}
-</Slider>
-
-
+      <Slider {...settings}>
+        {tipsData.map((tip, i) => (
+          <motion.div
+            key={tip.id}
+            custom={i}
+            initial="hidden"
+            animate="visible"
+            variants={cardVariants}
+            className="rounded-2xl cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-transform backdrop-blur-md bg-white/10 border border-white/20 flex flex-col"
+            style={{
+              minWidth: "260px",
+              maxWidth: "280px",
+              height: "360px",
+              padding: "1.5rem",
+              margin: "0 12px",
+              boxSizing: "border-box",
+            }}
+            onClick={() => setSelectedTip(tip)}
+          >
+            <img
+              src={tip.imageURL}
+              alt={tip.title}
+              className="w-full h-40 object-cover rounded-t-xl flex-shrink-0"
+            />
+            <div className="flex flex-col flex-grow justify-between">
+              <h2 className="text-lg font-semibold text-center text-white mb-2">
+                {tip.title}
+              </h2>
+              <p className="text-gray-200 text-sm pb-4 text-center line-clamp-3 flex-grow">
+                {tip.shortDescription}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </Slider>
 
       <AnimatePresence>
         {selectedTip && (

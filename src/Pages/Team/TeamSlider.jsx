@@ -23,13 +23,13 @@ const TeamSlider = () => {
   }
 
   return (
-    <div className="py-18 px-4 md:px-12 bg-gradient-to-br from-purple-70 to-blue-300 text-gray-800 shadow-2xl  mt-7 ">
-       <div className="text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-600 dark:text-white mb-10">
-  Meet World Best Doctors
-</h1>
+    <div className="py-18 px-4 md:px-12 shadow-2xl mt-7">
+      <div className="text-center">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-white mb-10">
+          Meet World Best Doctors
+        </h1>
+      </div>
 
-        </div>
       <Swiper
         effect="coverflow"
         grabCursor={true}
@@ -40,7 +40,24 @@ const TeamSlider = () => {
           disableOnInteraction: false,
         }}
         speed={9000}
-        slidesPerView={3}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 25,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 35,
+          },
+        }}
         coverflowEffect={{
           rotate: 30,
           stretch: 0,
@@ -51,7 +68,6 @@ const TeamSlider = () => {
         modules={[EffectCoverflow, Autoplay, Pagination]}
         className="max-w-6xl mx-auto"
       >
-       
         {team.map((member, index) => (
           <SwiperSlide
             key={index}
