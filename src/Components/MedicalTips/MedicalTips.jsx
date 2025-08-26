@@ -8,38 +8,34 @@ const tipsData = [
   {
     id: 1,
     title: "Stay Hydrated",
-    shortDescription:
-      "Drink at least 8 glasses of water daily to keep your body hydrated and healthy.",
+    shortDescription: "Drink at least 8 glasses of water daily.",
     fullContent:
-      "Drinking enough water is essential for maintaining good health. It helps in regulating body temperature, keeping joints lubricated, preventing infections, delivering nutrients to cells, and keeping organs functioning properly.",
+      "Drinking enough water is essential for maintaining good health. It helps regulate body temperature, keeps joints lubricated, prevents infections, delivers nutrients to cells, and keeps organs functioning properly.",
     imageURL:
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 2,
-    title: "Maintain a Balanced Diet",
-    shortDescription:
-      "Eat a variety of foods including fruits, vegetables, lean proteins, and whole grains.",
+    title: "Balanced Diet",
+    shortDescription: "Eat fruits, vegetables, lean proteins, whole grains.",
     fullContent:
-      "A balanced diet provides your body with the necessary nutrients it needs to function properly. Include fruits, vegetables, whole grains, and lean protein in your meals to support your immune system and overall health.",
+      "A balanced diet provides your body with the necessary nutrients it needs to function properly. Include fruits, vegetables, whole grains, and lean protein in your meals.",
     imageURL:
-      "https://plus.unsplash.com/premium_photo-1664476002571-ead0cbfc6d74?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFsYW5jZWQlMjBkaWV0fGVufDB8fDB8fHww",
+      "https://plus.unsplash.com/premium_photo-1664476002571-ead0cbfc6d74?w=600&auto=format&fit=crop&q=60",
   },
   {
     id: 3,
     title: "Regular Exercise",
-    shortDescription:
-      "Engage in at least 30 minutes of moderate exercise most days of the week.",
+    shortDescription: "30 mins of moderate exercise most days.",
     fullContent:
-      "Regular physical activity helps improve your muscle strength, boosts endurance, and enhances cardiovascular health. It also helps control weight, reduces the risk of chronic diseases, and improves mental health.",
+      "Regular physical activity improves muscle strength, endurance, cardiovascular health, controls weight, reduces chronic disease risk, and improves mental health.",
     imageURL:
-      "https://plus.unsplash.com/premium_photo-1726403423485-dfa5d440cca3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8UmVndWxhciUyMEV4ZXJjaXNlfGVufDB8fDB8fHww",
+      "https://plus.unsplash.com/premium_photo-1726403423485-dfa5d440cca3?w=600&auto=format&fit=crop&q=60",
   },
   {
     id: 4,
     title: "Get Enough Sleep",
-    shortDescription:
-      "Aim for 7-9 hours of sleep to help your body repair and recharge.And to improve your mood and cognitive function.",
+    shortDescription: "Aim for 7-9 hours of quality sleep.",
     fullContent:
       "Adequate sleep is crucial for physical and mental health. It improves concentration, mood, and overall quality of life.",
     imageURL:
@@ -48,22 +44,11 @@ const tipsData = [
   {
     id: 5,
     title: "Manage Stress",
-    shortDescription:
-      "Practice relaxation techniques like meditation or deep breathing. To reduce stress and improve mental health.",
+    shortDescription: "Practice meditation or deep breathing.",
     fullContent:
-      "Chronic stress can negatively impact your health. Managing stress helps lower blood pressure and improve mood.",
+      "Chronic stress negatively impacts health. Managing stress helps lower blood pressure and improve mood.",
     imageURL:
       "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 6,
-    title: "Regular Health Checkups",
-    shortDescription:
-      "Visit your healthcare provider regularly to catch potential issues early.",
-    fullContent:
-      "Routine screenings and checkups can help prevent diseases or catch them early when they're easier to treat.",
-    imageURL:
-      "https://plus.unsplash.com/premium_photo-1666299886656-008450f6f17b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8UmVndWxhciUyMGhlYWx0aCUyMGNoZWNrdXB8ZW58MHx8MHx8fDA%3D",
   },
 ];
 
@@ -72,7 +57,7 @@ const cardVariants = {
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, type: "spring", stiffness: 50 },
+    transition: { delay: i * 0.1, type: "spring", stiffness: 50 },
   }),
 };
 
@@ -87,35 +72,32 @@ const MedicalTips = () => {
 
   const settings = {
     infinite: true,
-    speed: 2000,           // দ্রুত গতিতে স্লাইড হবে
+    speed: 2500,
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
     dots: true,
-    autoplay: true,        // স্লাইড অটোমেটিক চালু থাকবে
-    autoplaySpeed: 0,      // একদম লেগে থাকবে, কোনো বিরতি নেই
-    cssEase: "linear",     // লিনিয়ার ইজে চলবে যেন কনটিনিউয়াস লুপ হয়
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    centerMode: true,        // centered slides
+    centerPadding: "40px",   // gap between slides
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2, centerPadding: "30px" } },
+      { breakpoint: 640, settings: { slidesToShow: 1, centerPadding: "20px" } },
     ],
   };
 
   return (
-    <div
-      className="max-w-7xl mx-auto p-6 rounded-xl"
-      style={{
-        background: "linear-gradient(135deg, #e0f2fe 0%, #fef3c7 100%)",
-      }}
-    >
-      <h1 className="text-5xl font-extrabold text-center mb-12 text-indigo-700 leading-tight">
+    <div className="py-16 px-6">
+      <h1 className="text-5xl font-extrabold text-center mb-12 text-white">
         Medical Tips & Health Awareness
       </h1>
-      <p className="text-center text-gray-600 max-w-xl mx-auto mb-12 px-4 text-lg leading-relaxed">
-        Learn essential health tips to maintain your well-being. Click on any card to get detailed information.
+      <p className="text-center text-gray-300 max-w-xl mx-auto mb-12 px-4 text-lg leading-relaxed">
+        Learn essential health tips to stay healthy. Click any card for details.
       </p>
 
-<Slider {...settings}>
+    <Slider {...settings}>
   {tipsData.map((tip, i) => (
     <motion.div
       key={tip.id}
@@ -123,26 +105,35 @@ const MedicalTips = () => {
       initial="hidden"
       animate="visible"
       variants={cardVariants}
-      className="mx-5 p-3 bg-gradient-to-br from-indigo-100 via-indigo-50 to-white rounded-xl shadow-lg cursor-pointer overflow-hidden hover:shadow-2xl hover:scale-105 transition-transform"
+      className="rounded-2xl cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-transform backdrop-blur-md bg-white/10 border border-white/20 flex flex-col"
+      style={{
+        minWidth: "260px",
+        maxWidth: "280px",
+        height: "360px",
+        padding: "1.5rem",
+        margin: "0 12px",   // <-- এখানে card গুলোর মধ্যে proper gap
+        gap: "5rem",
+        boxSizing: "border-box", // padding + margin ঠিকভাবে কাজ করবে
+      }}
       onClick={() => setSelectedTip(tip)}
-      style={{ minWidth: "280px", maxWidth: "320px", height: "400px", padding: "1.25rem", display: "flex", flexDirection: "column" }}
     >
       <img
         src={tip.imageURL}
         alt={tip.title}
-        className="w-100 h-40 object-cover rounded-t-xl flex-shrink-0"
+        className="w-full h-40 object-cover rounded-t-xl flex-shrink-0"
       />
-      <div className="mt-4 flex flex-col flex-grow">
-        <h2 className="text-xl font-semibold text-indigo-900 mb-2">
+      <div className="flex flex-col flex-grow justify-between">
+        <h2 className="text-lg font-semibold text-center text-white mb-2">
           {tip.title}
         </h2>
-        <p className="text-gray-600 line-clamp-3 text-sm flex-grow">
+        <p className="text-gray-200 text-sm pb-4 text-center line-clamp-3 flex-grow">
           {tip.shortDescription}
         </p>
       </div>
     </motion.div>
   ))}
 </Slider>
+
 
 
       <AnimatePresence>

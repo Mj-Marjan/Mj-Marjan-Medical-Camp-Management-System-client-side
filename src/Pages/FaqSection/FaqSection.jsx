@@ -47,20 +47,20 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
+    <div className="py-16 px-6" >
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-bold text-center text-indigo-700 mb-6"
+        className="text-4xl font-extrabold text-center text-white mb-6 drop-shadow-lg"
       >
         Frequently Asked Questions
       </motion.h2>
-      <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+      <p className="text-center text-gray-200 max-w-2xl mx-auto mb-12 text-lg">
         We’ve got answers to your most common questions. Click to expand and learn more.
       </p>
 
-      <div className="space-y-4">
+      <div className="space-y-5 max-w-3xl mx-auto">
         {faqData.map((faq, index) => (
           <motion.div
             key={index}
@@ -68,16 +68,16 @@ const FaqSection = () => {
             initial="hidden"
             animate="visible"
             variants={faqVariants}
-            className="bg-white rounded-xl shadow-md overflow-hidden"
+            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-indigo-400/30 transition-all duration-300"
           >
             <button
               onClick={() => toggleFAQ(index)}
               className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
             >
-              <span className="text-lg font-medium text-gray-800">{faq.question}</span>
+              <span className="text-lg font-semibold text-white">{faq.question}</span>
               <FaChevronDown
-                className={`transition-transform duration-300 ${
-                  openIndex === index ? "rotate-180 text-indigo-600" : ""
+                className={`transition-transform duration-300 text-white ${
+                  openIndex === index ? "rotate-180" : ""
                 }`}
               />
             </button>
@@ -87,8 +87,8 @@ const FaqSection = () => {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-6 pb-4 text-gray-600"
+                  transition={{ duration: 0.4 }}
+                  className="px-6 pb-4 text-gray-200 text-sm"
                 >
                   <p>{faq.answer}</p>
                 </motion.div>

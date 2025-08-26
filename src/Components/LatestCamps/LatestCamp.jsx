@@ -17,7 +17,7 @@ const LatestCamp = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <h2 className="text-4xl font-extrabold mb-12 text-center text-indigo-400 drop-shadow-lg">
+      <h2 className="text-4xl font-extrabold mb-12 text-center text-white drop-shadow-lg">
         🌊 Popular Medical Camps
       </h2>
 
